@@ -1,18 +1,29 @@
 package Base;
 
+import DataSourceConfig.Config;
 import io.restassured.RestAssured;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.builder.ResponseSpecBuilder;
 import io.restassured.http.ContentType;
 import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
+import org.junit.jupiter.api.BeforeAll;
+
+import java.util.Map;
 
 public class BaseTest {
 
+    public static Map<String, String> config;
+
+    @BeforeAll
+    static void setUpProject() {
+        config = Config.getEnvironmentConfig().getProperties();
+    }
+
     public static RequestSpecification getRequestSpec() {
         return RestAssured.requestSpecification = new RequestSpecBuilder()
-                .setBaseUri("https://api.openweathermap.org/data/2.5/weather")
-                .addParam("appid", "89a2ed8a594cc497a6273490e7ca59dd")
+                .setBaseUri(config.get("baseUri"))
+                .addParam("appid", config.get("appid"))
                 .setContentType(ContentType.JSON)
                 .build();
     }
