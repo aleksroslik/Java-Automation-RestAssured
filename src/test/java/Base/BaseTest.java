@@ -17,7 +17,7 @@ public class BaseTest {
 
     @BeforeAll
     static void setUpProject() {
-        config = Config.getEnvironmentConfig().getProperties();
+        config = Config.getAppConfig().getProperties();
     }
 
     public static RequestSpecification getRequestSpec() {

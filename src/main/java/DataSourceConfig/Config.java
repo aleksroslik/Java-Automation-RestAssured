@@ -15,7 +15,7 @@ public class Config {
         appConfig = readConfig();
     }
 
-    public static AppConfig getEnvironmentConfig() {
+    public static AppConfig getAppConfig() {
         return getInstance().appConfig;
     }
 
